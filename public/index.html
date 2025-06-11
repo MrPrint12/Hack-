@@ -16,7 +16,6 @@
     }
     #spinner {
       display: none;
-      text-align: center;
       margin-top: 20px;
     }
     #spinner div {
@@ -43,6 +42,9 @@
     button:hover {
       background-color: #0055aa;
     }
+    #qrcode {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -59,6 +61,14 @@
     <p style="font-size: 12px; color: #333;">Processando...</p>
   </div>
 
+  <div id="mensagemPagamento" style="display:none;">
+    <p style="font-size:16px; font-weight:bold;">Caro utente, deverá efetuar um depósito na conta do servidor com os seguintes dados:</p>
+    <p>Conta: BINANCE - <a href="https://s.binance.com/xk5ApxW9" target="_blank">https://s.binance.com/xk5ApxW9</a></p>
+    <p>Valor: 104 USD</p>
+    <div id="qrcode"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
     let jaEliminado = false;
     let jaSubmetido = false;
@@ -83,7 +93,7 @@
         const agora = new Date();
         const data = agora.toLocaleDateString('pt-PT');
         const hora = agora.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
-        alert(\`Agenda de eliminação de empresa criada em \${data} \${hora}, por favor submeta.\`);
+        alert(`Agenda de eliminação de empresa criada em ${data} ${hora}, por favor submeta.`);
         jaEliminado = true;
       }, 10000);
     }
@@ -97,7 +107,8 @@
       mostrarSpinner();
       setTimeout(() => {
         esconderSpinner();
-        alert("Caro utente, deverá efetuar um depósito na conta do servidor com os seguintes dados:\n\nConta: BINANCE - https://s.binance.com/xk5ApxW9\nValor: 104 USD");
+        document.getElementById("mensagemPagamento").style.display = "block";
+        new QRCode(document.getElementById("qrcode"), "https://s.binance.com/xk5ApxW9");
         jaSubmetido = true;
       }, 10000);
     }
