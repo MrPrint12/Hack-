@@ -1,96 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Hack Iremoval - SERVIÇOS DE INSS</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #222;
-      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e9f0f7, #f0f4fa);
+      color: #003366;
       padding: 40px;
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .header {
+      background-color: #003366;
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
     }
     h1 {
-      color: #003366;
+      font-size: 2em;
     }
-    #spinner {
-      display: none;
-      margin-top: 20px;
+    h3 {
+      font-weight: normal;
+      color: #cdddf7;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      background: #003366;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #0055aa;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
     }
     #spinner div {
-      width: 6px;
-      height: 6px;
-      margin: auto;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      background: #0066cc;
+      background-color: #0066cc;
+      margin: 20px auto;
       animation: spin 1s linear infinite;
     }
     @keyframes spin {
-      0%   { transform: rotate(0deg) scale(1.5); }
-      100% { transform: rotate(360deg) scale(1.5); }
-    }
-    button {
-      margin: 10px;
-      padding: 10px 20px;
-      background-color: #003366;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0055aa;
-    }
-    #painel, #mensagemPagamento {
-      display: none;
-      margin-top: 20px;
-    }
-    input {
-      padding: 10px;
-      margin: 5px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
-  <h1>Hack Iremoval</h1>
-  <h3>SERVIÇOS DE INSS</h3>
+  <div class="header">
+    <h1>Hack Iremoval</h1>
+    <h3>SERVIÇOS DE INSS</h3>
+  </div>
 
-  <!-- Login -->
-  <div id="login">
-    <input type="text" id="contribuinte" placeholder="Contribuinte"><br>
-    <input type="password" id="senha" placeholder="Senha"><br>
+  <div class="container" id="login">
+    <input type="text" id="contribuinte" placeholder="Contribuinte" />
+    <input type="password" id="senha" placeholder="Senha" />
     <button onclick="login()">Entrar</button>
   </div>
 
-  <!-- Painel após login -->
-  <div id="painel">
+  <div class="container" id="painel" style="display:none">
     <p><strong>Número de Contribuinte:</strong> C913277700</p>
     <p><strong>Nome:</strong> NEW 143 LDA</p>
     <p><strong>Actividade Principal:</strong> ACTIVIDADES DOS SERVIÇOS NAO FINANCEIROS</p>
-    <p><strong>Status:</strong>irregular</strong></p>
 
+    <button onclick="alterarDados()">Alterar Dados</button>
+    <button onclick="meterNoFrozen()">Meter no Frozen</button>
+    <button onclick="confirmar()">Confirmar</button>
     <button onclick="eliminar()">Eliminar Empresa</button>
     <button onclick="submeter()">Submeter</button>
-    <button onclick="Alterardados()">Alterar Dados</button>
-    <button onclick="Frozen()">Colocar no modo Frozen</button>
 
-    <div id="spinner">
-      <div></div>
-      <p style="font-size: 12px; color: #333;">Processando...</p>
-    </div>
+    <div id="spinner" style="display:none"><div></div></div>
 
-    <div id="mensagemPagamento">
-      <p style="font-size:16px; font-weight:bold;">Caro utente, deverá efetuar um depósito na conta do servidor com os seguintes dados:</p>
+    <div id="mensagemPagamento" style="display:none; text-align:center; margin-top: 20px;">
+      <p><strong>Caro utente</strong>, deverá efetuar um depósito na conta do servidor com os seguintes dados:</p>
       <p>Conta: BINANCE - <a href="https://s.binance.com/xk5ApxW9" target="_blank">https://s.binance.com/xk5ApxW9</a></p>
-      <p>Valor: 157 USD</p>
-      <div id="qrcode"></div>
+      <p>Valor: 104 USD</p>
+      <div id="qrcode" style="margin: 20px auto;"></div>
     </div>
   </div>
 
-  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
     let jaEliminado = false;
@@ -120,14 +144,11 @@
         alert("É permitido uma vez em cada Contribuinte.");
         return;
       }
-
       mostrarSpinner();
       setTimeout(() => {
         esconderSpinner();
         const agora = new Date();
-        const data = agora.toLocaleDateString('pt-PT');
-        const hora = agora.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
-        alert(`Agenda de eliminação de empresa criada em ${data} ${hora}, por favor submeta.`);
+        alert(`Agenda de eliminação de empresa criada em ${agora.toLocaleDateString()} ${agora.toLocaleTimeString()}, por favor submeta.`);
         jaEliminado = true;
       }, 10000);
     }
@@ -137,7 +158,6 @@
         alert("É permitido uma vez em cada Contribuinte.");
         return;
       }
-
       mostrarSpinner();
       setTimeout(() => {
         esconderSpinner();
@@ -145,6 +165,18 @@
         new QRCode(document.getElementById("qrcode"), "https://s.binance.com/xk5ApxW9");
         jaSubmetido = true;
       }, 10000);
+    }
+
+    function alterarDados() {
+      alert("Funcionalidade de alteração de dados em breve.");
+    }
+
+    function meterNoFrozen() {
+      alert("Empresa marcada como Frozen.");
+    }
+
+    function confirmar() {
+      alert("Dados confirmados com sucesso.");
     }
   </script>
 </body>
