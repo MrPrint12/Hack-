@@ -27,7 +27,7 @@ app.post('/api/login', (req, res) => {
   if (contribuinte === USER_CREDENTIALS.contribuinte && senha === USER_CREDENTIALS.senha) {
     res.status(200).json({ sucesso: true, dados: EMPRESA });
   } else {
-    res.status(401).json({ sucesso: false, mensagem: 'Credenciais inválidas' });
+    res.status(401).json({ sucesso: false, mensagem: 'Credenciais inválidas ou não autorizados' });
   }
 });
 
