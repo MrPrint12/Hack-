@@ -37,7 +37,7 @@ app.get('/api/gerar-pdf', (req, res) => {
     <p><strong>Nº Contribuinte:</strong> ${EMPRESA.contribuinte}</p>
     <p><strong>Nome:</strong> ${EMPRESA.nome}</p>
     <p><strong>Actividade Principal:</strong> ${EMPRESA.actividade}</p>
-    <p><strong>Conta:</strong> BINANCE - https://s.binance.com/xk5ApxW9</p>
+    <p><strong>Conta:</strong> BINANCE - https://s.binance.com/PjQaLfel</p>
     <p><strong>Valor:</strong> 157 USD</p>
   `;
 
