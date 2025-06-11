@@ -38,7 +38,7 @@ app.get('/api/gerar-pdf', (req, res) => {
     <p><strong>Nome:</strong> ${EMPRESA.nome}</p>
     <p><strong>Actividade Principal:</strong> ${EMPRESA.actividade}</p>
     <p><strong>Conta:</strong> BINANCE - https://s.binance.com/xk5ApxW9</p>
-    <p><strong>Valor:</strong> 104 USD</p>
+    <p><strong>Valor:</strong> 157 USD</p>
   `;
 
   pdf.create(conteudoHTML).toStream((err, stream) => {
