@@ -1,7 +1,7 @@
 {
   "name": "hack-iremoval",
-  "version": "1.0.0",
-  "description": "Hack Iremoval - Serviços de INSS",
+  "version": "1.1.0",
+  "description": "Hack Iremoval - Serviços de INSS com todas funcionalidades",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
