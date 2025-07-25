@@ -99,11 +99,11 @@
     <p><strong>Nome:</strong> REXVON INTERNATIONAL LIMITADA SUCURSAL</p>
     <p><strong>Actividade Principal:</strong> ACTIVIDADES DOS SERVIÇOS NAO FINANCEIROS</p>
     <p><strong>NUIT:</
-strong> 400939391:</
+strong> 400939391</p>
     <p><strong>Data de inscrição:</
-strong> 25-05-2021
+strong> 25-05-2021</p>
     <p><strong>Status:</
-strong> Não apresenta dividas no Sistema do INSS
+strong> Não apresenta dividas no Sistema do INSS</p>
 
     <button onclick="alterarDados()">Alterar Dados</button>
     <button onclick="meterNoFrozen()">Meter no Frozen</button>
@@ -112,6 +112,8 @@ strong> Não apresenta dividas no Sistema do INSS
 one-click=/"EliminarDividas()">Eliminar Dívidas</button>
     <button onclick="confirmar()">Confirmar</button>
     <button onclick="submeter()">Submeter</button>
+    <button
+one-click="VerificarStatusDaConta()">Verificar Status da Conta</button>
 
     <div id="spinner" style="display:none"><div></div></div>
 
@@ -185,6 +187,15 @@ one-click=/"EliminarDividas()">Eliminar Dívidas</button>
     function confirmar() {
       alert("Dados confirmados com sucesso.");
     }
+  
+    function EliminarDividas() {
+      alert("Não constam dividas.")
+    }
+
+    function VerificarStatusDaConta() {
+      alert("Caro autente: A tua conta está em transe, por favor aguarde.")
+    }
+
   </script>
 </body>
 </html>
